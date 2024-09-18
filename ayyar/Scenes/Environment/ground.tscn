@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://jrxuyyvkiw6i"]
+
+[ext_resource type="Texture2D" uid="uid://dheskmgskdxbi" path="res://Assets/Graphic/rectangle.png" id="1_5qsoq"]
+[ext_resource type="Script" path="res://Scenes/Environment/entity_spawner.gd" id="2_ek5hk"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oy33s"]
+
+[node name="Ground" type="Sprite2D"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(568, 614)
+scale = Vector2(5.74455, 0.595565)
+texture = ExtResource("1_5qsoq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -97.3864)
+shape = SubResource("WorldBoundaryShape2D_oy33s")
+
+[node name="EntitySpawner" type="Node" parent="."]
+script = ExtResource("2_ek5hk")

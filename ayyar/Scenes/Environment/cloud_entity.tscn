@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cixon1t8jyhme"]
+
+[ext_resource type="PackedScene" uid="uid://b7mu45pdfdc03" path="res://Scenes/Environment/entity.tscn" id="1_r4ex6"]
+[ext_resource type="Script" path="res://Scenes/Environment/cloud_entity.gd" id="2_fkma7"]
+[ext_resource type="Texture2D" uid="uid://beo2f70gfji3t" path="res://Assets/Graphic/cloud.png" id="3_ph2sf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5eh8g"]
+size = Vector2(91, 22)
+
+[node name="CloudEntity" instance=ExtResource("1_r4ex6")]
+position = Vector2(6, -1)
+script = ExtResource("2_fkma7")
+speed = 250
+spawn_position = Vector2(1544, 390)
+offset_height = 100.0
+
+[node name="Sprite2D" parent="." index="0"]
+self_modulate = Color(0.139447, 0.153676, 0.152587, 1)
+position = Vector2(-1, -1)
+scale = Vector2(0.308824, 0.308824)
+texture = ExtResource("3_ph2sf")
+
+[node name="Area2D" parent="." index="1"]
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_5eh8g")

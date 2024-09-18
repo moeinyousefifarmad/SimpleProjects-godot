@@ -1,14 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://jrxuyyvkiw6i"]
+[gd_scene load_steps=8 format=3 uid="uid://jrxuyyvkiw6i"]
 
 [ext_resource type="Texture2D" uid="uid://dheskmgskdxbi" path="res://Assets/Graphic/rectangle.png" id="1_5qsoq"]
-[ext_resource type="Script" path="res://Scenes/Environment/entity_spawner.gd" id="2_ek5hk"]
+[ext_resource type="Script" path="res://Scenes/Environment/entity_manager.gd" id="2_jerqv"]
+[ext_resource type="PackedScene" uid="uid://cixon1t8jyhme" path="res://Scenes/Environment/cloud_entity.tscn" id="3_m8qhy"]
+[ext_resource type="PackedScene" uid="uid://cec20lqdvsjui" path="res://Scenes/Environment/tree_entity.tscn" id="4_1dubl"]
+[ext_resource type="PackedScene" uid="uid://cmgiudqjtbchb" path="res://Scenes/Environment/mountain_entity.tscn" id="5_y14q3"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oy33s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3eryo"]
+size = Vector2(480, 888)
 
 [node name="Ground" type="Sprite2D"]
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(568, 614)
-scale = Vector2(5.74455, 0.595565)
+scale = Vector2(9.59572, 0.595565)
 texture = ExtResource("1_5qsoq")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -17,5 +23,20 @@ texture = ExtResource("1_5qsoq")
 position = Vector2(0, -97.3864)
 shape = SubResource("WorldBoundaryShape2D_oy33s")
 
-[node name="EntitySpawner" type="Node" parent="."]
-script = ExtResource("2_ek5hk")
+[node name="EntityManager" type="Node" parent="."]
+script = ExtResource("2_jerqv")
+Entities = Array[PackedScene]([ExtResource("3_m8qhy"), ExtResource("4_1dubl"), ExtResource("5_y14q3")])
+random_Spawn_rate = Vector2(2, 1)
+
+[node name="SpawnRate" type="Timer" parent="EntityManager"]
+autostart = true
+
+[node name="EndZone" type="Area2D" parent="EntityManager"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntityManager/EndZone"]
+position = Vector2(-672, 344)
+shape = SubResource("RectangleShape2D_3eryo")
+
+[connection signal="timeout" from="EntityManager/SpawnRate" to="EntityManager" method="_on_spawn_rate_timeout"]

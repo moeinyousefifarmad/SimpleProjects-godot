@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmgiudqjtbchb"]
+
+[ext_resource type="PackedScene" uid="uid://b7mu45pdfdc03" path="res://Scenes/Environment/entity.tscn" id="1_kiquw"]
+[ext_resource type="Texture2D" uid="uid://b24ofglk7qegl" path="res://Assets/Graphic/mountain.png" id="2_56pwa"]
+[ext_resource type="Script" path="res://Scenes/Environment/mountain_entity.gd" id="2_re0ua"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xkrau"]
+radius = 18.0278
+
+[node name="Entity" instance=ExtResource("1_kiquw")]
+script = ExtResource("2_re0ua")
+speed = 400
+spawn_position = Vector2(1468, 515)
+
+[node name="Sprite2D" parent="." index="0"]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_56pwa")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_xkrau")

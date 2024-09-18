@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cec20lqdvsjui"]
+
+[ext_resource type="Script" path="res://Scenes/Environment/tree_entity.gd" id="1_5ginq"]
+[ext_resource type="PackedScene" uid="uid://b7mu45pdfdc03" path="res://Scenes/Environment/entity.tscn" id="1_dvgpy"]
+[ext_resource type="Texture2D" uid="uid://dcnf3hog07vod" path="res://Assets/Graphic/tree.png" id="3_x3dj2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vxl1p"]
+radius = 40.0
+height = 114.0
+
+[node name="TreeEntity" instance=ExtResource("1_dvgpy")]
+position = Vector2(1212, 348)
+script = ExtResource("1_5ginq")
+speed = 400
+spawn_position = Vector2(1631, 422)
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-70, 93.1132)
+scale = Vector2(0.339623, 0.339623)
+texture = ExtResource("3_x3dj2")
+
+[node name="Area2D" parent="." index="1"]
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-69, 85)
+shape = SubResource("CapsuleShape2D_vxl1p")
